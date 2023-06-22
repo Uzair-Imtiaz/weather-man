@@ -8,10 +8,10 @@ class ReportGenerator:
     '''A class that will generate reports.'''
 
     def __init__(self) -> None:
-        '''Initialise the report type with the argument that the user has passed through the command line.'''
+        pass
 
     def report_e(self, files):
-        '''Generate a report for a given year display the highest temperature and day, lowest temperature and day,
+        '''Generate a report: for a given year display the highest temperature and day, lowest temperature and day,
     most humid day and humidity.
         '''
 
@@ -21,7 +21,7 @@ class ReportGenerator:
         compute = ComputeResults()
         selected_results = compute.assign_to_results_class(weather_readings)
         # Loop through the files of a specified month.
-        for file in files:
+        for file in files[1:]:
             fp = FileParser(file)
             readings_list = fp.parse_file()
             weather_readings = fp.populate(readings_list)
@@ -75,7 +75,7 @@ class ReportGenerator:
             print("\033[31m+\033[0m" * reading.temperature.max, '{}C - {}C'.format(reading.temperature.min,
                                                                                    reading.temperature.max))
 
-
+    # noinspection DuplicatedCode
     def generate_report(self, *args):
         '''Send calls to all the appropriate classes and their methods to generate results object and then use that
         object to generate the report.
@@ -96,13 +96,20 @@ class ReportGenerator:
             self.report_e(files)
         if ranges[0] is not None:
             # Get the last word of the range which represents the month. Use that number to get the month's name.
-            pattern = f"{path_to_files_dir}/*{months[int(ranges[0][-1]) - 1]}*"
+            if len(ranges[0]) > 6:
+                month = months[int(ranges[0][-2:]) - 1]
+            else:
+                month = months[int(ranges[0][-1]) - 1]
+            print(month + ' ' + ranges[0][:4])
+            pattern = f"{path_to_files_dir}/*{month}*"
             file = glob.glob(pattern)
             self.report_a(file[0])
         if ranges[1] is not None:
-            month = months[int(ranges[1][-1]) - 1]
+            if len(ranges[1]) > 6:
+                month = months[int(ranges[1][-2:]) - 1]
+            else:
+                month = months[int(ranges[1][-1]) - 1]
             print(month + ' ' + ranges[1][:4])
             pattern = f"{path_to_files_dir}/*{month}*"
             file = glob.glob(pattern)
             self.report_c(file[0])
-

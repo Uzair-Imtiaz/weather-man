@@ -37,5 +37,3 @@ class ComputeResults:
         calculations.set_extremes(max_temp, max_temp_date, min_temp, min_temp_date, max_humidity, max_humidity_date)
         calculations.set_average(avg_highest_temp, avg_lowest_temp, avg_mean_humidity)
         return calculations
-
-

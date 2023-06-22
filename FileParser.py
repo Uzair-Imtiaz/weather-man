@@ -29,5 +29,3 @@ class FileParser:
             w_reading = WeatherReadings(reading)
             weather_readings.append(w_reading)
         return weather_readings
-
-

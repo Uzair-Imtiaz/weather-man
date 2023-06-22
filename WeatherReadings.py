@@ -79,4 +79,3 @@ class WeatherReadings:
         self.cloud_cover = data[20]
         self.events = data[21]
         self.wind_dir_degrees = data[22]
-

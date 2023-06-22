@@ -32,4 +32,3 @@ class CalculationsResult:
         self.highest_average_temperature = highest_avg_temperature
         self.lowest_average_temperature = lowest_avg_temperature
         self.average_mean_humidity = avg_mean_humidity
-
