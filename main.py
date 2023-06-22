@@ -19,6 +19,7 @@ def main():
     rg = ReportGenerator()
     rg.generate_report(args.files_dir, args.year_and_month_for_a, args.year_and_month_for_c, args.year)
 
-# Run the program
+
 if __name__ == '__main__':
+    # Call the main function.
     main()
