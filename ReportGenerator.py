@@ -5,15 +5,36 @@ from datetime import datetime
 
 
 class ReportGenerator:
-    '''A class that will generate reports.'''
+    """A class that will generate reports.
+
+    Methods
+    -------
+    generate_report
+        Calls the appropriate functions according to the CLI arguments.
+
+    report_e
+        For a given year display the highest and lowest temperature and day, most humid day and humidity.
+
+    report_a
+        For a given month display the average highest and average lowest temperature, average mean humidity.
+
+    report_c
+        For a given month draw a horizontal bar with the lowest temperature in blue and the highest temperature in red.
+    """
 
     def __init__(self) -> None:
         pass
 
-    def report_e(self, files):
-        '''Generate a report: for a given year display the highest temperature and day, lowest temperature and day,
-    most humid day and humidity.
-        '''
+    def report_e(self, files) -> None:
+        """
+        For a given year display the highest and lowest temperature and day, most humid day and humidity.
+
+        Parameters
+        ----------
+        files : list
+            A list of files with name similar to the one passed by the user.
+            Must contain at one value.
+        """
 
         fp = FileParser(files[0])
         readings_list = fp.parse_file()
@@ -49,10 +70,17 @@ class ReportGenerator:
         print('Humidity: {}% on {}'.format(selected_results.humidity,
                                            formatted_date))
 
-    def report_a(self, file):
-        '''Generate a report for a given month display the average highest temperature, average lowest temperature,
-    average mean humidity.
-        '''
+    def report_a(self, file) -> None:
+        """
+        For a given year display the highest and lowest temperature and day, most humid day and humidity.
+
+        Parameters
+        ----------
+        file : list
+            A list that contains the name of the file that matches the given year and month.
+            Will always contain one value.
+        """
+
         fp = FileParser(file)
         readings_list = fp.parse_file()
         weather_readings = fp.populate(readings_list)
@@ -62,10 +90,16 @@ class ReportGenerator:
         print('Lowest Average: {}C'.format(results.lowest_average_temperature))
         print('Average Mean Humidity: {}%'.format(results.average_mean_humidity))
 
-    def report_c(self, file):
-        '''Generate a report for a given month draw two horizontal bar charts on the console for the highest and lowest
-    temperature on each day. Highest in red and lowest in blue.
-        '''
+    def report_c(self, file) -> None:
+        """
+        For a given month draw a horizontal bar with the lowest temperature in blue and the highest temperature in red.
+
+        Parameters
+        ----------
+        file : list
+            A list that contains the name of the file that matches the given year and month.
+            Will always contain one value.
+        """
 
         fp = FileParser(file)
         readings_list = fp.parse_file()
@@ -76,10 +110,16 @@ class ReportGenerator:
                                                                                    reading.temperature.max))
 
     # noinspection DuplicatedCode
-    def generate_report(self, *args):
-        '''Send calls to all the appropriate classes and their methods to generate results object and then use that
-        object to generate the report.
-        '''
+    def generate_report(self, *args) -> None:
+        """
+        Calls the appropriate functions according to the given arguments.
+
+        Parameters
+        ----------
+        *args :
+            A variable length argument list.
+
+        """
 
         months = [
             'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',

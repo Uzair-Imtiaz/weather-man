@@ -3,16 +3,45 @@ import csv
 
 
 class FileParser:
-    '''A class that parses the files and populates the readings data structure with correct data types.'''
+    """
+    A class that parses the files and populates the readings data structure with correct data types.
+
+    Attributes
+    ----------
+    filename : str
+        Stores the name of the file that is to be parsed.
+
+    Methods
+    -------
+    parse_file
+        Parse the file and store the data in a list.
+
+    populate
+        Create a list of weatherReadings type with data from the file previously parsed.
+    """
 
     def __init__(self, filename: str) -> None:
-        '''Initialise the filename attribute'''
+        """
+        Constructor
+
+        Parameters
+        ----------
+        filename : str
+            Contains the name of the file that will be parsed.
+        """
+
         self.filename = filename
 
     def parse_file(self) -> list:
-        '''Open the file using csv.DictReader which reads the data into a dictionary. Iterate over the data and append
-        it to a list. Return that list.
-        '''
+        """
+        Parse the file and get the list of readings of each day.
+
+        Returns
+        -------
+        readings_list : list
+            List of the lines read from the file.
+        """
+
         readings_list = []
         with open(self.filename, 'r', encoding="utf-8") as records_file:
             reader = csv.reader(records_file)
@@ -22,7 +51,19 @@ class FileParser:
             return readings_list
 
     def populate(self, readings_list) -> list:
-        '''Assign data read from the file to the object of weatherReadings class. Return the list.'''
+        """
+        Creates objects of weatherReadings type for each day and append them to a list.
+
+        Parameters
+        ----------
+        readings_list : list
+            The list of the data read from the file that contains readings for each day of the month.
+
+        Returns
+        -------
+        weather_readings : list
+            The list of weatherReadings type object populated with readings data from the file.
+        """
 
         weather_readings = []
         for reading in readings_list:

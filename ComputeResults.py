@@ -2,15 +2,33 @@ from CalculationsResult import CalculationsResult
 
 
 class ComputeResults:
-    '''A class that will compute the results for the reports and store those in the calculationResults type object.'''
+    """
+    A class that will compute the results for the reports and store those in the calculationResults type object.
+
+    Methods
+    -------
+    assign_to_results_class
+        Calculates the weather readig values and assign them to a CalculationResult type object.
+    """
 
     def __init__(self) -> None:
         pass
 
     def assign_to_results_class(self, weather_readings) -> CalculationsResult:
-        '''Go through the weather_readings list and calculates the required values. Then assign them to the
-        CalculationsResult class.
-        '''
+        """
+        Calculate the values required for the reports and assign them to the CalculationsResult object.
+
+        Parameters
+        ----------
+        weather_readings : list
+            A list of weather reading values of a month.
+
+        Returns
+        -------
+        calculations : CalculationsResult
+            A CalculationsResult object with maximum temperature and the date that day, minimum temperature and the date
+            that day, maximum humidity ad the date that day assigned by respective values from that month.
+        """
 
         # Using the lambda function to pass an extra parameter for the max function. That extra parameter is the value
         # at the index of that specific reading.
